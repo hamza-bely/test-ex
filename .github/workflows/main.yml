@@ -27,3 +27,11 @@ jobs:
       
       - name: Run tests with Gradle
         run: ./gradlew test
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        if: always()  # Exécute cette étape même si les tests échouent
+        with:
+         name: test-results
+         path: build/reports/tests/test/
+
