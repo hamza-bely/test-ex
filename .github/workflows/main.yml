@@ -22,7 +22,7 @@ jobs:
           echo "Timestamp: $(date)"
  test:
     runs-on: ubuntu-latest
-    
+    needs: build
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -49,7 +49,11 @@ jobs:
  lint:
      runs-on: ubuntu-latest
      needs: test
+     
      steps:
+        - name: Grant execute permission to Gradle
+          run: chmod +x gradlew
+          
         - name: Checkout Code
           uses: actions/checkout@v4
   
