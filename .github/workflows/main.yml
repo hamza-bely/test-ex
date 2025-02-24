@@ -35,3 +35,13 @@ jobs:
          name: test-results
          path: build/reports/tests/test/
 
+  lint:
+     runs-on: ubuntu-latest
+     needs: test
+     steps:
+        - name: Checkout Code
+          uses: actions/checkout@v2
+  
+        - name: Checkstyle with Gradle
+          run: ./gradlew checkstyleMain --no-daemon
+
